@@ -1,5 +1,6 @@
 ﻿using flipProject.Interface;
 using flipProject.Services;
+using flipProject.Models;
 using Microsoft.ApplicationInsights;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -93,11 +94,11 @@ namespace flipProject.Controllers
         [HttpPost]
         [Route("[action]")]
 
-        public string InsertFirstData(string Daytime, string Domain, int Stpid, int Mtpid, string DomainExcelSheet, int Piaca_PartnerOneId, string piaca_DownloadExcelSheet)
+        public string InsertFirstData([FromBody] Firstapi firstApiData)
         {
             try
             {
-                DataTable result = _firstapi.InsertData( Daytime, Domain, Stpid, Mtpid, DomainExcelSheet, Piaca_PartnerOneId, piaca_DownloadExcelSheet);
+                DataTable result = _firstapi.InsertData(firstApiData);
                 string json = JsonConvert.SerializeObject(result);
                 return json;
             }

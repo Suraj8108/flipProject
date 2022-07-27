@@ -1,5 +1,6 @@
 ﻿using flipProject.Helpers;
 using flipProject.Interface;
+using flipProject.Models;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -22,18 +23,18 @@ namespace flipProject.Services
             return result;
         }
 
-        public DataTable InsertData(string Daytime, string Domain, int Stpid, int Mtpid, string DomainExcelSheet, int Piaca_PartnerOneId, string piaca_DownloadExcelSheet)
+        public DataTable InsertData(Firstapi firstApiData)
         {
             try
             {
                 List<SqlParameter> paramList = new List<SqlParameter> {
-                new SqlParameter("@Daytime", Daytime),
-                new SqlParameter("@Domain", Domain),
-                new SqlParameter("@Stpid", Stpid),
-                new SqlParameter("@Mtpid", Mtpid),
-                new SqlParameter("@DomainExcelSheet", DomainExcelSheet),
-                new SqlParameter("@Piaca_PartnerOneId", Piaca_PartnerOneId),
-                new SqlParameter("@piaca_DownloadExcelSheet", piaca_DownloadExcelSheet),
+                new SqlParameter("@Daytime", firstApiData.Daytime),
+                new SqlParameter("@Domain", firstApiData.Domain),
+                new SqlParameter("@Stpid", firstApiData.Stpid),
+                new SqlParameter("@Mtpid", firstApiData.Mtpid),
+                new SqlParameter("@DomainExcelSheet", firstApiData.DownloadExcelSheet),
+                new SqlParameter("@Piaca_PartnerOneId", firstApiData.Piaca_PartnerOneId),
+                new SqlParameter("@piaca_DownloadExcelSheet", firstApiData.piaca_DownloadExcelSheet),
             };
                 DataTable result = sqlHelper.ExecuteSelectQuery(Constants.InsertFirstApi, paramList);
                 return result;
