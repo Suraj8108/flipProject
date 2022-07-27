@@ -1,4 +1,5 @@
 using flipProject.Helpers;
+using flipProject.Interface;
 using flipProject.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IBookServices, BookServices>();
+builder.Services.AddScoped<IFirstApi, FirstApiServices>();
 builder.Services.AddTransient(typeof(SQLHelper));
 builder.Services.AddCors(options =>
 {
